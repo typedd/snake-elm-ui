@@ -16,3 +16,5 @@ Open http://localhost:8000/src/Main.elm
 
 * Make a fork
 * Make PRs your-fork/feature/asdf => typedd/develop
+* Be happy
+
