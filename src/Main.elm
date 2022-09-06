@@ -36,7 +36,7 @@ view model =
         ]
     <|
         el
-            [centerX , alignLeft ]
+            [ centerX, alignBottom ]
         <|
             column
                 []
