@@ -44,47 +44,47 @@ view model =
                 [ row
                     []
                 <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
                     ]
                 , row
                     []
                 <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
                     ]
                 , row
                     []
                 <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 0 255 0, Border.width 3, Background.color <| rgb255 0 128 0, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 0 255 0, Border.width 3, Background.color <| rgb255 0 128 0, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 0 128 0, Border.width 3, Background.color <| rgb255 0 255 0, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
                     ]
                 , row
                     []
                 <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
                     ]
                 , row
                     []
                 <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
                     ]
             ]
 
