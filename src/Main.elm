@@ -22,7 +22,10 @@ type alias Model =
 
 init : () -> (Model, Cmd msg)
 init _ =
-    ({ x = 5, y = 5 }, Cmd.none)
+    ({ x = 20, y = 20 }, Cmd.none)
+
+xy : Model
+xy = {x = 20, y = 20}
 
 update : msg -> Model -> (Model, Cmd msg)
 update msg model =
@@ -42,16 +45,13 @@ view model =
             column
                 []
             <|
-                (List.repeat fieldSize fieldRow)
+                (List.repeat xy.y fieldRow)
                 
 cell : Element msg
 cell = el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
 
 fieldRow : Element msg
-fieldRow = Element.row [] (List.repeat fieldSize cell)
-
-fieldSize : Int
-fieldSize = 20
+fieldRow = Element.row [] (List.repeat xy.x cell)
 
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
