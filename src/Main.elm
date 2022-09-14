@@ -51,7 +51,7 @@ fieldRow : Element msg
 fieldRow = Element.row [] (List.repeat fieldSize cell)
 
 fieldSize : Int
-fieldSize = 20
+fieldSize = 20 --input user
 
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
