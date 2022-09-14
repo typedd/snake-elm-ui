@@ -5,6 +5,7 @@ import Html exposing (Html)
 import Element exposing (..)
 import Element.Border as Border
 import Element.Background as Background
+import Html.Attributes exposing (list)
 
 main =
     Browser.element
@@ -41,52 +42,16 @@ view model =
             column
                 []
             <|
-                [ row
-                    []
-                <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    ]
-                , row
-                    []
-                <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    ]
-                , row
-                    []
-                <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 0 255 0, Border.width 3, Background.color <| rgb255 0 128 0, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 0 255 0, Border.width 3, Background.color <| rgb255 0 128 0, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 0 128 0, Border.width 3, Background.color <| rgb255 0 255 0, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    ]
-                , row
-                    []
-                <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    ]
-                , row
-                    []
-                <|
-                    [ el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    , el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
-                    ]
-            ]
+                (List.repeat fieldSize fieldRow)
+                
+cell : Element msg
+cell = el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+
+fieldRow : Element msg
+fieldRow = Element.row [] (List.repeat fieldSize cell)
+
+fieldSize : Int
+fieldSize = 20
 
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
