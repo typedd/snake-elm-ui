@@ -32,7 +32,7 @@ view model =
     layout
         [ width fill
         , height fill
-        , Element.explain Debug.todo
+        --, Element.explain Debug.todo
         ]
     <|
         el
