@@ -43,8 +43,10 @@ view model =
             <|
                 List.repeat model.x fieldRow
 
-fieldRow : Element msg
-fieldRow = Element.row [] (List.repeat 20 (el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none))
+cell : Element msg
+cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none                
 
+fieldRow : Element msg
+fieldRow = Element.row [] (List.repeat 20 cell)
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
