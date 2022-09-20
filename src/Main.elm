@@ -48,5 +48,6 @@ cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color
 
 fieldRow : Element msg
 fieldRow = Element.row [] (List.repeat 20 cell)
+
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
