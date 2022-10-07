@@ -32,7 +32,7 @@ view model =
     layout
         [ width fill
         , height fill
-        , Element.explain Debug.todo
+        -- , Element.explain Debug.todo
         ]
     <|
         el
@@ -44,7 +44,7 @@ view model =
                 List.repeat model.x fieldRow
 
 cell : Element msg
-cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none                
+cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
 
 fieldRow : Element msg
 fieldRow = Element.row [] (List.repeat 20 cell)
