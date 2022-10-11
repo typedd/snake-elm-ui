@@ -37,19 +37,20 @@ view model =
             column
                 []
             <|
-                List.indexedMap (\i row -> foo i ) ((List.repeat model.x cell))
+                
+                List.indexedMap (\i row -> foo 5 i ) (List.repeat model.x cell)
 
-                -- List.indexedMap (\i row -> List.indexedMap (\j row2 -> foo i j) (List.repeat model.x cell)) 
-                --     ((List.repeat model.y (List.repeat model.x cell)))
+                --List.indexedMap (\i row -> List.indexedMap (\j row2 -> foo i j) (List.repeat model.y cell)) 
+                --     (List.repeat model.x cell))
 
 cell : Element msg
 cell = el [ Border.color <| rgb255 255 255 255, Border.width 1, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
 
--- foo : Int -> Int -> Element msg
--- foo xx yy = el [ Border.color <| rgb255 255 255 255, Border.width 1, (if (xx == 5) && (yy == 5) then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
+foo : Int -> Int -> Element msg
+foo xx yy = el [ Border.color <| rgb255 255 255 255, Border.width 1, (if (xx == 5) && (yy == 5) then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
 
-foo : Int -> Element msg
-foo xx = el [ Border.color <| rgb255 255 255 255, Border.width 1, (if (xx == 5) then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
+-- foo : Int -> Element msg
+-- foo xx = el [ Border.color <| rgb255 255 255 255, Border.width 1, (if (xx == 5) then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
 
 
 fieldRow : Int -> Element msg
