@@ -37,7 +37,6 @@ view model =
             column
                 []
             <|
-                
                 List.indexedMap (\i row -> foo 5 i ) (List.repeat model.x cell)
 
                 --List.indexedMap (\i row -> List.indexedMap (\j row2 -> foo i j) (List.repeat model.y cell)) 
@@ -58,20 +57,3 @@ fieldRow n = Element.row [] (List.repeat n cell)
 
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
-
-
-
-
-
-
-                --(List.repeat model.y (fieldRow model.x))
-               --List.map (\i row -> List.indexedMap i List.repeat model.x foo(i)))
-
-               --         List.map (\i -> foo(i)) (List.repeat model.x cell)
-
-                --foo (i))) 
-                 --   (List.repeat model.y (fieldRow model.x))
-                
-                ---(List.repeat model.x cell)
-
-                --List.Index.Map (\i row -> List.Index.Map (\j cell -> foo i j row) (List.repeat model.y (fieldRow model.x)))
