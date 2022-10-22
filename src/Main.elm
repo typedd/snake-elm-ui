@@ -17,6 +17,8 @@ main =
 type alias Model =
     { x : Int
     , y : Int
+    , snakeHeadX : Int
+    , snakeHeadY : Int
     }
 
 init : () -> (Model, Cmd msg)
