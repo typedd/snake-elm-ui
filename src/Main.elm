@@ -32,7 +32,7 @@ view model =
     layout
         [ width fill
         , height fill
-        , Element.explain Debug.todo
+        -- , Element.explain Debug.todo
         ]
     <|
         el
@@ -41,13 +41,16 @@ view model =
             column
                 []
             <|
-                List.repeat model.x fieldRow
+                List.repeat model.x (fieldRow model.y)
 
 cell : Element msg
-cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none                
+cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
 
-fieldRow : Element msg
-fieldRow = Element.row [] (List.repeat 20 cell)
+-- foo : Int -> Int -> Element msg
+-- foo x y = el [ Border.color <| rgb255 255 255 255, Border.width 2, (if x = 5 and y = 5 then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
+
+fieldRow : Int -> Element msg
+fieldRow y = Element.row [] (List.repeat y cell)
 
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
