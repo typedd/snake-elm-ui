@@ -5,6 +5,7 @@ import Html exposing (Html)
 import Element exposing (..)
 import Element.Border as Border
 import Element.Background as Background
+import Time exposing (..)
 
 main =
     Browser.element
@@ -17,15 +18,26 @@ main =
 type alias Model =
     { x : Int
     , y : Int
+    , snakeHeadX : Int
+    , snakeHeadY : Int
     }
+
+type Msg = Tick Time.Posix
 
 init : () -> (Model, Cmd msg)
 init _ =
-    ({ x = 20, y = 20 }, Cmd.none)
+    ({  x = 20, 
+        y = 20, 
+        snakeHeadX = 4, 
+        snakeHeadY = 4 }, Cmd.none)
 
-update : msg -> Model -> (Model, Cmd msg)
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-    (model, Cmd.none)
+    case msg of
+    Tick newTime ->
+        ( { model | snakeHeadX = model.snakeHeadX + 1 }
+        , Cmd.none
+        )
 
 view : Model -> Html msg
 view model =
@@ -41,16 +53,17 @@ view model =
             column
                 []
             <|
-                List.indexedMap (\i _ -> fieldRow i model.x) (List.repeat model.y cell)
+                List.indexedMap (\i _ -> fieldRow i model.x model.snakeHeadX) (List.repeat model.y cell)
 
 cell : Element msg
 cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none                
 
-foo : Int -> Int -> Element msg
-foo xx yy = el [ Border.color <| rgb255 255 255 255, Border.width 1, (if (xx == 4) && (yy == 4) then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
+foo : Int -> Int -> Int -> Element msg
+foo xx yy xxSnake= el [ Border.color <| rgb255 255 255 255, Border.width 1, (if (xx == xxSnake ) && (yy == 4) then Background.color <| rgb255 100 200 0 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
 
-fieldRow : Int -> Int -> Element msg
-fieldRow m repeatX = Element.row [] (List.indexedMap (\j _ -> foo m j) (List.repeat repeatX cell))
+fieldRow : Int -> Int -> Int -> Element msg
+fieldRow m repeatX mSnake = Element.row [] (List.indexedMap (\j _ -> foo m j mSnake) (List.repeat repeatX cell))
 
-subscriptions : a -> Sub msg
-subscriptions _ = Sub.none
+subscriptions : a -> Sub Msg
+subscriptions _ =
+    Time.every 1000 Tick
