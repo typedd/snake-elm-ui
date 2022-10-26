@@ -41,16 +41,16 @@ view model =
             column
                 []
             <|
-                List.repeat model.x (fieldRow model.y)
+                List.indexedMap (\i _ -> fieldRow i model.x) (List.repeat model.y cell)
 
 cell : Element msg
 cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
 
--- foo : Int -> Int -> Element msg
--- foo x y = el [ Border.color <| rgb255 255 255 255, Border.width 2, (if x = 5 and y = 5 then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
+foo : Int -> Int -> Element msg
+foo xx yy = el [ Border.color <| rgb255 255 255 255, Border.width 2, (if (xx == 5) && (yy == 5) then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
 
-fieldRow : Int -> Element msg
-fieldRow y = Element.row [] (List.repeat y cell)
+fieldRow : Int -> Int -> Element msg
+fieldRow m repeatX = Element.row [] (List.indexedMap (\j _ -> foo m j) (List.repeat repeatX cell))
 
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
