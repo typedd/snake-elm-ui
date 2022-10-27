@@ -69,5 +69,4 @@ fieldRow m repeatX mSnake = Element.row [] (List.indexedMap (\j _ -> foo m j mSn
 
 subscriptions : a -> Sub Msg
 subscriptions _ =
-   Time.every 1000 Tick
-   
+  Time.every 1000 Tick
