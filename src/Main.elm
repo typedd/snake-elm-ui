@@ -29,13 +29,14 @@ init _ =
     ({ x = 20
     , y = 20
     , snakeHeadX = 4
-    , snakeHeadY = 4 }, 
+    , snakeHeadY = 4 
+    }, 
     Cmd.none)
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
    case msg of
-    Tick newTime ->
+     Tick newTime ->
        ( { model | snakeHeadX = model.snakeHeadX + 1 }
        , Cmd.none
        )
@@ -69,3 +70,4 @@ fieldRow m repeatX mSnake = Element.row [] (List.indexedMap (\j _ -> foo m j mSn
 subscriptions : a -> Sub Msg
 subscriptions _ =
    Time.every 1000 Tick
+   
