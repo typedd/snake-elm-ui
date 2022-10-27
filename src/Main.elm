@@ -50,7 +50,7 @@ view model =
         ]
     <|
         el
-            [ centerX, centerY ]
+            [ centerX, alignBottom ]
         <|
             column
                 []
