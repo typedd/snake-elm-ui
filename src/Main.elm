@@ -5,6 +5,7 @@ import Html exposing (Html)
 import Element exposing (..)
 import Element.Border as Border
 import Element.Background as Background
+import Time exposing (..)
 
 main =
     Browser.element
@@ -19,13 +20,19 @@ type alias Model =
     , y : Int
     }
 
+type Msg = Tick Time.Posix
+
 init : () -> (Model, Cmd msg)
 init _ =
     ({ x = 20, y = 20 }, Cmd.none)
 
-update : msg -> Model -> (Model, Cmd msg)
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-    (model, Cmd.none)
+    case msg of
+        Tick newTime ->
+            ( { model | x = model.x + 1, y = model.y + 1 }
+            , Cmd.none
+            )
 
 view : Model -> Html msg
 view model =
@@ -52,5 +59,6 @@ foo xx yy = el [ Border.color <| rgb255 255 255 255, Border.width 2, (if (xx == 
 fieldRow : Int -> Int -> Element msg
 fieldRow m repeatX = Element.row [] (List.indexedMap (\j _ -> foo m j) (List.repeat repeatX cell))
 
-subscriptions : a -> Sub msg
-subscriptions _ = Sub.none
+subscriptions : a -> Sub Msg
+subscriptions _ =
+    Time.every 1000 Tick
