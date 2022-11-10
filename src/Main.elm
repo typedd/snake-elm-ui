@@ -6,6 +6,8 @@ import Element exposing (..)
 import Element.Border as Border
 import Element.Background as Background
 
+
+-- MAIN
 main =
     Browser.element
         { init = init
@@ -14,18 +16,70 @@ main =
         , view = view
         }
 
-type alias Model =
-    { x : Int
-    , y : Int
+
+-- MODEL
+
+type alias Cell =
+    { color : Color
     }
+
+type alias Row = List Cell
+type alias Field = List Row
+type alias RowIndex = Int
+type alias CellIndex = Int
+type alias Snake =
+    { head:
+        { rowIndex : RowIndex
+        , cellIndex : CellIndex
+        }
+    }
+
+type alias Model =
+    { field : Field
+    , snake : Snake
+    }
+
+defaultCell : Cell
+defaultCell =
+    { color = rgb255 50 20 20 }
 
 init : () -> (Model, Cmd msg)
 init _ =
-    ({ x = 20, y = 20 }, Cmd.none)
+    let snake =
+            { head =
+                { rowIndex = 4
+                , cellIndex = 4
+                }
+            }
+        field = List.repeat 20 (List.repeat 20 defaultCell)
+    in
+        (
+            { field = putSnakeOnField snake field
+            , snake = snake
+            }
+        , Cmd.none
+        )
+
+
+-- UPDATE
 
 update : msg -> Model -> (Model, Cmd msg)
 update msg model =
     (model, Cmd.none)
+
+putSnakeOnField : Snake -> Field -> Field
+putSnakeOnField snake oldField =
+    List.indexedMap (putSnakeOnRow snake) oldField
+
+putSnakeOnRow : Snake -> RowIndex -> Row -> Row
+putSnakeOnRow snake rowIndex oldRow =
+    List.indexedMap (putSnakeOnCell snake rowIndex) oldRow
+
+putSnakeOnCell : Snake -> RowIndex -> CellIndex -> Cell -> Cell
+putSnakeOnCell snake rowIndex cellIndex oldCell =
+    { color = if (rowIndex == snake.head.rowIndex && cellIndex == snake.head.cellIndex ) then (rgb255 100 200 0) else oldCell.color }
+
+-- VIEW
 
 view : Model -> Html msg
 view model =
@@ -38,21 +92,25 @@ view model =
         el
             [ centerX, centerY ]
         <|
-            column
+            Element.column
                 []
             <|
-                List.indexedMap (\i r -> row [] (List.indexedMap (\j _ -> foo i j) (r))) ( List.repeat model.y (fieldRow model.x) )
+                viewField model.field
 
-type alias Cell msg = Element msg
+viewField : Field -> List (Element msg)
+viewField field =
+    List.map viewRow field
 
-cell : Cell msg
-cell = el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| rgb255 50 20 20, width (px 20), height (px 20) ] Element.none
+viewRow : Row -> Element msg
+viewRow row =
+    Element.row [] (List.map viewCell row)
 
-foo : Int -> Int -> Cell msg
-foo i j = el [ Border.color <| rgb255 255 255 255, Border.width 2, (if (i == 4) && (j == 4) then Background.color <| rgb255 150 20 20 else Background.color <| rgb255 50 20 20), width (px 20), height (px 20) ] Element.none
+viewCell : Cell -> Element msg
+viewCell cell =
+    el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| cell.color, width (px 20), height (px 20) ] Element.none
 
-fieldRow : Int -> List (Cell msg)
-fieldRow y = List.repeat y cell
+
+-- SUBSCRIPTIONS
 
 subscriptions : a -> Sub msg
 subscriptions _ = Sub.none
