@@ -5,6 +5,7 @@ import Html exposing (Html)
 import Element exposing (..)
 import Element.Border as Border
 import Element.Background as Background
+import Time exposing (..)
 
 
 -- MAIN
@@ -27,12 +28,21 @@ type alias Row = List Cell
 type alias Field = List Row
 type alias RowIndex = Int
 type alias CellIndex = Int
+-- type Direction =
+--       Up
+--     | Down
+--     | Left
+--     | Right
 type alias Snake =
     { head:
         { rowIndex : RowIndex
         , cellIndex : CellIndex
         }
+      --, direction : Direction
     }
+
+
+type Msg = Tick Time.Posix
 
 type alias Model =
     { field : Field
@@ -63,9 +73,30 @@ init _ =
 
 -- UPDATE
 
-update : msg -> Model -> (Model, Cmd msg)
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-    (model, Cmd.none)
+     case msg of
+         Tick newTime -> 
+            ({ model | snake = 
+                {head = 
+                    { rowIndex = model.snake.head.rowIndex
+                    , cellIndex = model.snake.head.cellIndex + 1}
+                }
+             }
+            , Cmd.none
+            )
+            -- ({ model | snake = moveSnake(model.snake)
+
+-- moveSnake : Snake -> Snake
+-- moveSnake oldSnake = 
+--     if (not gameOver) then
+--         { head =
+--            { rowIndex = oldSnake.head.cellIndex
+--            , cellIndex = oldSnake.head.cellIndex + 1
+--            }
+--         }
+--      else ()
+--     
 
 putSnakeOnField : Snake -> Field -> Field
 putSnakeOnField snake oldField =
@@ -78,6 +109,10 @@ putSnakeOnRow snake rowIndex oldRow =
 putSnakeOnCell : Snake -> RowIndex -> CellIndex -> Cell -> Cell
 putSnakeOnCell snake rowIndex cellIndex oldCell =
     { color = if (rowIndex == snake.head.rowIndex && cellIndex == snake.head.cellIndex ) then (rgb255 100 200 0) else oldCell.color }
+
+-- gameOver : Snake -> Bool
+-- gameOver snake = (snake.cellIndex == 20) || (snake.rowIndex == 20)
+
 
 -- VIEW
 
@@ -112,5 +147,6 @@ viewCell cell =
 
 -- SUBSCRIPTIONS
 
-subscriptions : a -> Sub msg
-subscriptions _ = Sub.none
+subscriptions : a -> Sub Msg
+subscriptions _ = 
+    Time.every 1000 Tick
