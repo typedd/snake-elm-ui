@@ -8,6 +8,7 @@ import Element.Background as Background
 import Time exposing (..)
 
 
+
 -- MAIN
 main =
     Browser.element
@@ -28,6 +29,7 @@ type alias Row = List Cell
 type alias Field = List Row
 type alias RowIndex = Int
 type alias CellIndex = Int
+
 -- type Direction =
 --       Up
 --     | Down
@@ -76,27 +78,36 @@ init _ =
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
      case msg of
-         Tick newTime -> 
-            ({ model | snake = 
-                {head = 
-                    { rowIndex = model.snake.head.rowIndex
-                    , cellIndex = model.snake.head.cellIndex + 1}
-                }
-             }
-            , Cmd.none
+         Tick _ -> 
+          let snake = moveSnake model.snake
+            
+              field = List.repeat 20 (List.repeat 20 defaultCell)
+          in
+            (
+              { field = putSnakeOnField snake field
+              , snake = snake
+              }
+              , Cmd.none
             )
-            -- ({ model | snake = moveSnake(model.snake)
+            
+            
+            
+            
+            
+            -- ( { model | field = putSnakeOnField (moveSnake model.snake) model.field
+            --   }
+            --   , Cmd.none
+            -- )
 
--- moveSnake : Snake -> Snake
--- moveSnake oldSnake = 
---     if (not gameOver) then
---         { head =
---            { rowIndex = oldSnake.head.cellIndex
---            , cellIndex = oldSnake.head.cellIndex + 1
---            }
---         }
---      else ()
---     
+moveSnake : Snake -> Snake
+moveSnake oldSnake = 
+ --   if ( !gameOver ) then
+        { head =
+           { rowIndex = oldSnake.head.rowIndex
+           , cellIndex = oldSnake.head.cellIndex + 1
+           }
+        }
+  --   else ()
 
 putSnakeOnField : Snake -> Field -> Field
 putSnakeOnField snake oldField =
@@ -111,8 +122,7 @@ putSnakeOnCell snake rowIndex cellIndex oldCell =
     { color = if (rowIndex == snake.head.rowIndex && cellIndex == snake.head.cellIndex ) then (rgb255 100 200 0) else oldCell.color }
 
 -- gameOver : Snake -> Bool
--- gameOver snake = (snake.cellIndex == 20) || (snake.rowIndex == 20)
-
+-- gameOver snake = (snake.head.cellIndex == 20) || (snake.head.rowIndex == 20)
 
 -- VIEW
 
@@ -144,9 +154,11 @@ viewCell : Cell -> Element msg
 viewCell cell =
     el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| cell.color, width (px 20), height (px 20) ] Element.none
 
+-- viewGameOver : Element msg
+-- viewGameOver = text "GAME OVER"
 
 -- SUBSCRIPTIONS
 
 subscriptions : a -> Sub Msg
-subscriptions _ = 
+subscriptions model = 
     Time.every 1000 Tick
