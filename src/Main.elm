@@ -29,18 +29,11 @@ type alias Row = List Cell
 type alias Field = List Row
 type alias RowIndex = Int
 type alias CellIndex = Int
-
--- type Direction =
---       Up
---     | Down
---     | Left
---     | Right
 type alias Snake =
     { head:
         { rowIndex : RowIndex
         , cellIndex : CellIndex
         }
-      --, direction : Direction
     }
 
 
@@ -72,7 +65,6 @@ init _ =
         , Cmd.none
         )
 
-
 -- UPDATE
 
 update : Msg -> Model -> (Model, Cmd Msg)
@@ -89,25 +81,14 @@ update msg model =
               }
               , Cmd.none
             )
-            
-            
-            
-            
-            
-            -- ( { model | field = putSnakeOnField (moveSnake model.snake) model.field
-            --   }
-            --   , Cmd.none
-            -- )
 
 moveSnake : Snake -> Snake
 moveSnake oldSnake = 
- --   if ( !gameOver ) then
         { head =
            { rowIndex = oldSnake.head.rowIndex
            , cellIndex = oldSnake.head.cellIndex + 1
            }
         }
-  --   else ()
 
 putSnakeOnField : Snake -> Field -> Field
 putSnakeOnField snake oldField =
@@ -120,9 +101,6 @@ putSnakeOnRow snake rowIndex oldRow =
 putSnakeOnCell : Snake -> RowIndex -> CellIndex -> Cell -> Cell
 putSnakeOnCell snake rowIndex cellIndex oldCell =
     { color = if (rowIndex == snake.head.rowIndex && cellIndex == snake.head.cellIndex ) then (rgb255 100 200 0) else oldCell.color }
-
--- gameOver : Snake -> Bool
--- gameOver snake = (snake.head.cellIndex == 20) || (snake.head.rowIndex == 20)
 
 -- VIEW
 
@@ -153,9 +131,6 @@ viewRow row =
 viewCell : Cell -> Element msg
 viewCell cell =
     el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| cell.color, width (px 20), height (px 20) ] Element.none
-
--- viewGameOver : Element msg
--- viewGameOver = text "GAME OVER"
 
 -- SUBSCRIPTIONS
 
