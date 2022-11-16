@@ -5,6 +5,8 @@ import Html exposing (Html)
 import Element exposing (..)
 import Element.Border as Border
 import Element.Background as Background
+import Time exposing (..)
+
 
 
 -- MAIN
@@ -34,6 +36,9 @@ type alias Snake =
         }
     }
 
+
+type Msg = Tick Time.Posix
+
 type alias Model =
     { field : Field
     , snake : Snake
@@ -60,12 +65,30 @@ init _ =
         , Cmd.none
         )
 
-
 -- UPDATE
 
-update : msg -> Model -> (Model, Cmd msg)
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-    (model, Cmd.none)
+     case msg of
+         Tick _ -> 
+          let snake = moveSnake model.snake
+            
+              field = List.repeat 20 (List.repeat 20 defaultCell)
+          in
+            (
+              { field = putSnakeOnField snake field
+              , snake = snake
+              }
+              , Cmd.none
+            )
+
+moveSnake : Snake -> Snake
+moveSnake oldSnake = 
+        { head =
+           { rowIndex = oldSnake.head.rowIndex
+           , cellIndex = oldSnake.head.cellIndex + 1
+           }
+        }
 
 putSnakeOnField : Snake -> Field -> Field
 putSnakeOnField snake oldField =
@@ -109,8 +132,8 @@ viewCell : Cell -> Element msg
 viewCell cell =
     el [ Border.color <| rgb255 255 255 255, Border.width 2, Background.color <| cell.color, width (px 20), height (px 20) ] Element.none
 
-
 -- SUBSCRIPTIONS
 
-subscriptions : a -> Sub msg
-subscriptions _ = Sub.none
+subscriptions : a -> Sub Msg
+subscriptions model = 
+    Time.every 1000 Tick
