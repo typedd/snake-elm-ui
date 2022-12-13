@@ -60,6 +60,9 @@ init _ =
                     },
                     { rowIndex = 6
                     , cellIndex = 4
+                    },
+                    { rowIndex = 7
+                    , cellIndex = 4
                     }
                 ]
             }
@@ -93,7 +96,7 @@ putSnakeOnCell snake rowIndex cellIndex oldCell =
         if (rowIndex == snake.head.rowIndex && cellIndex == snake.head.cellIndex ) 
             then (rgb255 100 200 0) 
             else
-                if (rowIndex == snake.body.rowIndex && cellIndex == snake.body.cellIndex) 
+                if (List.member rowIndex (List.map (\record -> record.rowIndex) snake.body) && List.member cellIndex (List.map (\record -> record.cellIndex) snake.body)) 
                     then (rgb255 255 165 0)
             else 
                 oldCell.color 
