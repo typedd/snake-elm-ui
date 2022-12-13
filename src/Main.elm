@@ -31,6 +31,10 @@ type alias Snake =
     { head:
         { rowIndex : RowIndex
         , cellIndex : CellIndex
+        },
+      body: List
+        { rowIndex : RowIndex
+        , cellIndex : CellIndex
         }
     }
 
@@ -49,7 +53,18 @@ init _ =
             { head =
                 { rowIndex = 4
                 , cellIndex = 4
-                }
+                },
+                body = [
+                    { rowIndex = 5
+                    , cellIndex = 4
+                    },
+                    { rowIndex = 6
+                    , cellIndex = 4
+                    },
+                    { rowIndex = 7
+                    , cellIndex = 4
+                    }
+                ]
             }
         field = List.repeat 20 (List.repeat 20 defaultCell)
     in
@@ -77,7 +92,15 @@ putSnakeOnRow snake rowIndex oldRow =
 
 putSnakeOnCell : Snake -> RowIndex -> CellIndex -> Cell -> Cell
 putSnakeOnCell snake rowIndex cellIndex oldCell =
-    { color = if (rowIndex == snake.head.rowIndex && cellIndex == snake.head.cellIndex ) then (rgb255 100 200 0) else oldCell.color }
+    { color = 
+        if (rowIndex == snake.head.rowIndex && cellIndex == snake.head.cellIndex ) 
+            then (rgb255 100 200 0) 
+            else
+                if (List.member rowIndex (List.map (\record -> record.rowIndex) snake.body) && List.member cellIndex (List.map (\record -> record.cellIndex) snake.body)) 
+                    then (rgb255 255 165 0)
+            else 
+                oldCell.color 
+    }
 
 -- VIEW
 
